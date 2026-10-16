@@ -19,12 +19,20 @@ describe('Welcome page', () => {
     it('shows the login form and allows switching to registration', () => {
         render(<Welcome posts={[]} auth={{ user: null }} errors={{}} />);
 
-        expect(screen.getByRole('heading', { name: 'Log in' })).toBeInTheDocument();
+        expect(
+            screen.getByRole('heading', { name: 'Log in' }),
+        ).toBeInTheDocument();
 
-        fireEvent.click(screen.getByRole('button', { name: 'Need an account? Register' }));
+        fireEvent.click(
+            screen.getByRole('button', { name: 'Need an account? Register' }),
+        );
 
-        expect(screen.getByRole('heading', { name: 'Register' })).toBeInTheDocument();
-        expect(screen.getByPlaceholderText('Confirm password')).toBeInTheDocument();
+        expect(
+            screen.getByRole('heading', { name: 'Register' }),
+        ).toBeInTheDocument();
+        expect(
+            screen.getByPlaceholderText('Confirm password'),
+        ).toBeInTheDocument();
     });
 
     it('submits the login credentials through Inertia', () => {

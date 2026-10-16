@@ -70,7 +70,9 @@ export default function Welcome({ posts, auth, errors }: Props) {
                     {auth.user && (
                         <span>
                             Hello, {auth.user.name}{' '}
-                            <button onClick={() => router.post('/logout')}>Log out</button>
+                            <button onClick={() => router.post('/logout')}>
+                                Log out
+                            </button>
                         </span>
                     )}
                 </header>
@@ -80,18 +82,24 @@ export default function Welcome({ posts, auth, errors }: Props) {
                         <h2>New post</h2>
                         <input
                             value={postTitle}
-                            onChange={(event) => setPostTitle(event.target.value)}
+                            onChange={(event) =>
+                                setPostTitle(event.target.value)
+                            }
                             placeholder="Title"
                             required
                         />
                         <textarea
                             value={postBody}
-                            onChange={(event) => setPostBody(event.target.value)}
+                            onChange={(event) =>
+                                setPostBody(event.target.value)
+                            }
                             placeholder="Write something..."
                             required
                         />
                         <button type="submit">Publish</button>
-                        {errors.title && <p className="error">{errors.title}</p>}
+                        {errors.title && (
+                            <p className="error">{errors.title}</p>
+                        )}
                     </form>
                 ) : (
                     <section className="box">
@@ -102,14 +110,18 @@ export default function Welcome({ posts, auth, errors }: Props) {
                                 <input
                                     type="email"
                                     value={email}
-                                    onChange={(event) => setEmail(event.target.value)}
+                                    onChange={(event) =>
+                                        setEmail(event.target.value)
+                                    }
                                     placeholder="Email"
                                     required
                                 />
                                 <input
                                     type="password"
                                     value={password}
-                                    onChange={(event) => setPassword(event.target.value)}
+                                    onChange={(event) =>
+                                        setPassword(event.target.value)
+                                    }
                                     placeholder="Password"
                                     required
                                 />
@@ -119,28 +131,38 @@ export default function Welcome({ posts, auth, errors }: Props) {
                             <form onSubmit={submitRegister}>
                                 <input
                                     value={name}
-                                    onChange={(event) => setName(event.target.value)}
+                                    onChange={(event) =>
+                                        setName(event.target.value)
+                                    }
                                     placeholder="Name"
                                     required
                                 />
                                 <input
                                     type="email"
                                     value={email}
-                                    onChange={(event) => setEmail(event.target.value)}
+                                    onChange={(event) =>
+                                        setEmail(event.target.value)
+                                    }
                                     placeholder="Email"
                                     required
                                 />
                                 <input
                                     type="password"
                                     value={password}
-                                    onChange={(event) => setPassword(event.target.value)}
+                                    onChange={(event) =>
+                                        setPassword(event.target.value)
+                                    }
                                     placeholder="Password"
                                     required
                                 />
                                 <input
                                     type="password"
                                     value={passwordConfirmation}
-                                    onChange={(event) => setPasswordConfirmation(event.target.value)}
+                                    onChange={(event) =>
+                                        setPasswordConfirmation(
+                                            event.target.value,
+                                        )
+                                    }
                                     placeholder="Confirm password"
                                     required
                                 />
@@ -148,14 +170,24 @@ export default function Welcome({ posts, auth, errors }: Props) {
                             </form>
                         )}
 
-                        {errors.email && <p className="error">{errors.email}</p>}
-                        {errors.password && <p className="error">{errors.password}</p>}
+                        {errors.email && (
+                            <p className="error">{errors.email}</p>
+                        )}
+                        {errors.password && (
+                            <p className="error">{errors.password}</p>
+                        )}
 
                         <button
                             className="link-button"
-                            onClick={() => setFormType(formType === 'login' ? 'register' : 'login')}
+                            onClick={() =>
+                                setFormType(
+                                    formType === 'login' ? 'register' : 'login',
+                                )
+                            }
                         >
-                            {formType === 'login' ? 'Need an account? Register' : 'Already registered? Log in'}
+                            {formType === 'login'
+                                ? 'Need an account? Register'
+                                : 'Already registered? Log in'}
                         </button>
                     </section>
                 )}
@@ -172,26 +204,41 @@ export default function Welcome({ posts, auth, errors }: Props) {
                         <h3>Comments</h3>
                         {post.comments.map((comment) => (
                             <p className="comment" key={comment.id}>
-                                <strong>{comment.user.name}:</strong> {comment.body}
+                                <strong>{comment.user.name}:</strong>{' '}
+                                {comment.body}
                             </p>
                         ))}
 
-                        {auth.user && (
-                            commentPostId === post.id ? (
-                                <form onSubmit={(event) => submitComment(event, post.id)}>
+                        {auth.user &&
+                            (commentPostId === post.id ? (
+                                <form
+                                    onSubmit={(event) =>
+                                        submitComment(event, post.id)
+                                    }
+                                >
                                     <input
                                         value={commentBody}
-                                        onChange={(event) => setCommentBody(event.target.value)}
+                                        onChange={(event) =>
+                                            setCommentBody(event.target.value)
+                                        }
                                         placeholder="Write a comment"
                                         required
                                     />
                                     <button type="submit">Comment</button>
-                                    <button type="button" onClick={() => setCommentPostId(null)}>Cancel</button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setCommentPostId(null)}
+                                    >
+                                        Cancel
+                                    </button>
                                 </form>
                             ) : (
-                                <button onClick={() => setCommentPostId(post.id)}>Add a comment</button>
-                            )
-                        )}
+                                <button
+                                    onClick={() => setCommentPostId(post.id)}
+                                >
+                                    Add a comment
+                                </button>
+                            ))}
                     </article>
                 ))}
             </main>
